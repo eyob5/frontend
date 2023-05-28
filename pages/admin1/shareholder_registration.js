@@ -18,13 +18,12 @@ export default function shareholder_registration() {
   // const [roll, setRoll] = useState('');
   const [paidbirr, setPaidBirr] = useState("");
   const [shareamount, setShareAmount] = useState("");
+  const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const [person, setPerson] = useState(null);
 const rou =useRouter();
 const id=rou.query.id;
-// console.log(rou.query.id)
 let user;
-
 useEffect(()=>{
   const fetchShareholders=async ()=>{
     user= JSON.parse(sessionStorage.getItem("user"));
@@ -50,6 +49,7 @@ useEffect(()=>{
       setPhoneNo(data.phoneNo),
       setWereda(data.wereda),
       setEmail(data.email),
+      setImage(data.image),
       setShareAmount(data.shareamount)
       console.log(data)
     }
@@ -69,7 +69,6 @@ useEffect(()=>{
   const handleSubmit = async (event) => {
     event.preventDefault();
     const users=JSON.parse(sessionStorage.getItem("user"));
-    // TODO: Handle form submission
     const registration = {
       firstname,
       middlename,
@@ -84,14 +83,33 @@ useEffect(()=>{
       houseNo,
       paidbirr,
       shareamount,
+      image,
     };
+    // const formData = new FormData();
+    // formData.append('firstname', firstname);
+    // formData.append('middlename', middlename);
+    // formData.append('phoneNo', phoneNo);
+    // formData.append('shareamount', shareamount);
+    // formData.append('paidbirr', paidbirr);
+    // formData.append('password', password);
+    // formData.append('subcity', subcity);
+    // formData.append('wereda', wereda);
+    // formData.append('city', city);
+    // formData.append('email', email);
+    // formData.append('country', country);
+    // formData.append('houseNo', houseNo);
+    // formData.append('lastname', lastname);
+    // if (image) {
+    //   formData.append('image', image,image.name);
+    // }
+  
     const response = await fetch("http://localhost:8000/api/share", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${users.token}`,
       },
-      body: JSON.stringify(registration),
+      body: JSON.stringify(registration)
     });
     const data = await response.json();
     if (response.ok) {

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Layout from "../admin1";
-
+import { useRouter } from "next/router";
 const MyComponent = () => {
+  const rou =useRouter();
+const totalshare=rou.query.shareamount
   const [totalProfit, setTotalProfit] = useState(0);
-  const [totalShareAmount, setTotalShareAmount] = useState(0);
+  const [totalShareAmount, setTotalShareAmount] = useState(totalshare);
   const [error, setError] = useState("");
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -68,7 +70,7 @@ const MyComponent = () => {
               className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 type="number"
                 value={totalShareAmount}
-                onChange={(event) => setTotalShareAmount(event.target.value)}
+                // onChange={(event) => setTotalShareAmount(event.target.value)}
               />
             </div>
 

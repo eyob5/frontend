@@ -45,9 +45,11 @@ const ShareholderTable = ({ shareholders }) => {
   const filteredShareholders = shareholders.filter((shareholder) =>
     shareholder.firstname.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  // const totalShareAmount=shareholders.reduce((shareholder)=>(shareholder.shareamount),0)
+  const totalShareAmount=shareholders.map((shareholder)=>(shareholder.shareamount)).reduce((previousValue, currentValue) => {
+    return previousValue+=currentValue;
+  }, 0).toFixed(2)
 
-  // console.log(totalShareAmount);
+  console.log(totalShareAmount);
   // calculate total number of pages
   const totalPages = Math.ceil(filteredShareholders.length / itemsPerPage);
 
@@ -105,7 +107,7 @@ const ShareholderTable = ({ shareholders }) => {
           <div className="">
           <button className="w-36  h-8 border bg-red-500 mb-4  ">
             {/* <FaPlus className="ml-3 mr-1 -mb-5  " /> */}
-            <Link href="/admin1/dividend">Share Dividend</Link>
+            <Link href={`/admin1/dividend?shareamount=${totalShareAmount}`}>Share Dividend</Link>
           </button>
           </div>
          </div>

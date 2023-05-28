@@ -98,8 +98,8 @@ export default function UserProfile() {
             <h2 className="text-lg font-medium text-red-400 mb-4">Profile Picture</h2>
             {/* <img src={`http://localhost:5000/${item.img}`}/><br></br> */}
             <img
-             src={'http://localhost:5000/${user.image}'}
-             alt="Profile" 
+        src={`http://localhost:8000/${user.image}`}
+       alt="Profile" 
              className="w-full rounded-lg" />
           </div>
         </div>

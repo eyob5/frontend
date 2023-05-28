@@ -35,7 +35,6 @@ const AddNews = () => {
       setDescription(''),
       setTitle(''),
       setImage(null)
-
     }
   };
 

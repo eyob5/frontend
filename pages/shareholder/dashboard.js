@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../shareholder'
 import Head from 'next/head';
+import Link from 'next/link';
 
 function dashboared() {
 
@@ -78,8 +79,9 @@ function dashboared() {
                 </p>
               </div>
             </div> */}
-            <div className="flex items-center p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-              <div className="rounded-full bg-red-500 text-white p-2 mr-4">
+              <div className="flex items-center p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+               <Link href="http://localhost:3000/shareholder/report">
+            <div className="rounded-full bg-red-500 text-white p-2 mr-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -95,6 +97,7 @@ function dashboared() {
                   />
                 </svg>
               </div>
+              </Link>
               <div>
                 <h2 className="text-lg font-medium text-gray-800 mb-2">Meeting Reports</h2>
                 <p className="text-gray-700">
@@ -103,6 +106,7 @@ function dashboared() {
               </div>
             </div>
             <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/news">
               <div className="rounded-full bg-purple-500 text-white p-2 mr-4 hover:scale-105 ease-in duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,6 +123,7 @@ function dashboared() {
                   />
                 </svg>
               </div>
+              </Link>
               <div>
                 <h2 className="text-lg font-medium text-gray-800 mb-2">News</h2>
                 <p className="text-gray-700">
@@ -127,6 +132,7 @@ function dashboared() {
               </div>
             </div>
             <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/news">
               <div className="rounded-full bg-teal-500 text-white p-2 mr-4 hover:scale-105 ease-in duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +149,7 @@ function dashboared() {
                   />
                 </svg>
               </div>
+              </Link>
               <div>
                 <h2 className="text-lg font-medium text-gray-800 mb-2">My Share Amount</h2>
                 <p className="text-gray-700">
@@ -151,6 +158,7 @@ function dashboared() {
               </div>
             </div>
             <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/buy">
               <div className="rounded-full bg-pink-500 text-white p-2 mr-4 hover:scale-105 ease-in duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -167,14 +175,16 @@ function dashboared() {
                   />
                 </svg>
               </div>
+              </Link>
               <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-2">My Profile</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-2">Buy Share</h2>
                 <p className="text-gray-700">
-                  Update your personal information and view your account details.
+                  Increase your share to be more profitable.
                 </p>
               </div>
             </div>
             <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/chat">
               <div className="rounded-full bg-indigo-500 text-white p-2 mr-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -191,6 +201,7 @@ function dashboared() {
                   />
                 </svg>
               </div>
+              </Link>
               <div>
                 <h2 className="text-lg font-medium text-gray-800 mb-2">Chat with Admins</h2>
                 <p className="text-gray-700">
@@ -199,6 +210,7 @@ function dashboared() {
               </div>
             </div>
             <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/setting">
               <div className="rounded-full bg-gray-500 text-white p-2 mr-4">
               <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -214,12 +226,12 @@ function dashboared() {
                     d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                   />
                 </svg>
-               
                 </div>
+                </Link>
                 <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-2">Application letter</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-2">Setting</h2>
                 <p className="text-gray-700">
-                  You can send an application letter to the administrator to get help with any issues or questions.
+                  you can change your password 
                 </p>
               </div>
                 </div>

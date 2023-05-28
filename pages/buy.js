@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
+import Image from 'next/image';
 import Heator from "../components/Landing_page/Heator";
 
 const buy = () => {
@@ -14,35 +15,50 @@ const buy = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [houseNo, setHouseNo] = useState("");
-  // const [roll, setRoll] = useState('');
   const [paidbirr, setPaidBirr] = useState("");
   const [shareamount, setShareAmount] = useState("");
   const [error, setError] = useState("");
+  const [image, setImage] = useState(null);
   const handleSubmit = async (event) => {
-
   event.preventDefault();
-  // TODO: Handle form submission
-  const registration = {
-    firstname,
-    middlename,
-    lastname,
-    country,
-    city,
-    subcity,
-    wereda,
-    email,
-    phoneNo,
-    password,
-    houseNo,
-    paidbirr,
-    shareamount,
-  };
+  const formData = new FormData();
+    formData.append('firstname', firstname);
+    formData.append('middlename', middlename);
+    formData.append('phoneNo', phoneNo);
+    formData.append('shareamount', shareamount);
+    formData.append('paidbirr', paidbirr);
+    formData.append('password', password);
+    formData.append('subcity', subcity);
+    formData.append('wereda', wereda);
+    formData.append('city', city);
+    formData.append('email', email);
+    formData.append('country', country);
+    formData.append('houseNo', houseNo);
+    formData.append('lastname', lastname);
+    if (image) {
+      formData.append('image', image, image.name);
+    }
+  // const registration = {
+  //   firstname,
+  //   middlename,
+  //   lastname,
+  //   country,
+  //   city,
+  //   subcity,
+  //   wereda,
+  //   email,
+  //   phoneNo,
+  //   password,
+  //   houseNo,
+  //   paidbirr,
+  //   shareamount,
+  // };
   const response = await fetch("http://localhost:8000/api/buyer", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(registration),
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: formData,
   });
   const data = await response.json();
   if (response.ok) {
@@ -60,12 +76,18 @@ const buy = () => {
     setWereda("");
     setSubcity("");
     setError("");
+    setImage(null);
     console.log(data);
   } else {
     setError(data.message);
   }
 };
-
+const handleImageChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    setImage(file);
+  }
+};
   return (
     <Heator>
     
@@ -166,20 +188,6 @@ const buy = () => {
             value={password}
           />
         </div>
-        
-        {/* <div className="mt-4">
-          <label htmlFor="number" className="block mb-2 font-bold text-gray-700">
-           Roll No
-          </label>
-          <input
-            type="number"
-            id="roll"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            value={roll}
-            onChange={(event) => setRoll(event.target.value)}
-          />
-        </div> */}
         <div className="mb-4">
           <label
             htmlFor="phoneNo"
@@ -317,20 +325,23 @@ const buy = () => {
             value={shareamount}
           />
         </div>
-        {/* <div className="mb-4">
-        <label htmlFor="description" className="block mb-2 font-bold text-gray-700">
-          Image:    <spam className="text-green-300 ml-10 ">insert the receipt</spam>
-        </label>
-        <form action="http://localhost:8000/api/adminnews" method="POST" enctype='multipart/form-data'>
-        <input
-          type="file"
-          id="image"
-          // onChange={(e) => setImage(e.target.value)}
-          // value={image}
-          className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
-       </form>
-      </div> */}
+        <div className="mb-4">
+          <label htmlFor="image" className="block font-medium mb-2">
+            Image
+          </label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </div>
+        {image && (
+          <div className="mb-4">
+            <Image src={URL.createObjectURL(image)} alt={image.name} width={640} height={360} className="rounded-md" />
+          </div>
+        )}
         <div className="mb-8">
           <button
             type="submit"
