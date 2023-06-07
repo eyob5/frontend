@@ -45,8 +45,6 @@ const news = () => {
          {news && <NewsCard adminnews={news}/>} 
        </div>
      </div>
-     
-    
      </Layout> 
 
   )

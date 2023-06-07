@@ -15,8 +15,8 @@ export default function TopBar({ showNav, setShowNav }) {
 
   const router = useRouter();
   const {logout}= UserAuth();
+  let user= JSON.parse(sessionStorage.getItem("user"));
   const handleLogout=async (e) =>{
-   const user= JSON.parse(sessionStorage.getItem("user"));
    if(user){
      logout();
      router.push('/login')

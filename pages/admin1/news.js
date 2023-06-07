@@ -44,7 +44,7 @@ function news() {
   return (
     <Layout>
     <div className="h-screen w-full bg-gray-200 mb-10 p-4">
-      <div className=" ml-96 mb-2 ">
+    <div className='px-10 py-6'>
         <div className="w-40 p-2 bg-sky-500 xl:ml-80 sm:-ml-96 h-10 border border-gray-600 rounded-2xl text-center text-lg font-semibold text-white ">
           <Link href="/admin1/newscreate">Create News</Link>
         </div>

@@ -1,4 +1,5 @@
 
+import shareholder from "@/pages/shareholder";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -37,6 +38,15 @@ const ReportTable = ({ shareholderActivities }) => {
     return previousValue+=currentValue;
   }, 0).toFixed(2)
   const totalShareholders=shareholderActivities && shareholderActivities.length
+  const maxShareAmount=shareholderActivities && shareholderActivities.map((shareholder)=>(shareholder.shareamount)).reduce((prevval,curval)=>{
+    if(prevval > curval) return prevval;
+    else return curval;
+  }).toFixed(2)
+  const minshareAmount=shareholderActivities && shareholderActivities.map((shareholder)=>(shareholder.shareamount)).reduce((prevval,curval)=>{
+    if(prevval < curval) return prevval;
+    else return curval;
+  }).toFixed(2)
+  console.log(maxShareAmount,minshareAmount)
   const TotalIncreasedShare=addshare && addshare.map((shareholder)=>(shareholder.shareamount)).reduce((previousValue, currentValue) => {
     return previousValue+=currentValue;
   }, 0).toFixed(2)
@@ -47,6 +57,9 @@ const ReportTable = ({ shareholderActivities }) => {
         <th className="px-4 py-2">Total Shareholders</th>
           <th className="px-4 py-2">Total ShareAmount</th>
           <th className="px-4 py-2">Increased ShareAmount</th>
+          <th className="px-4 py-2">Maximum ShareAmount</th>
+          <th className="px-4 py-2">Minimum ShareAmount</th>
+
         </tr>
       </thead>
       <tbody>
@@ -54,6 +67,8 @@ const ReportTable = ({ shareholderActivities }) => {
           <td className="border px-4 py-2">{totalShareholders}</td>
             <td className="border px-4 py-2">{totalShareAmount}</td>
             <td className="border px-4 py-2">{TotalIncreasedShare}</td>
+            <td className="border px-4 py-2">{maxShareAmount}</td>
+            <td className="border px-4 py-2">{minshareAmount}</td>
           </tr>
       </tbody>
     </table>

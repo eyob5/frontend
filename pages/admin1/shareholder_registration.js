@@ -81,25 +81,7 @@ useEffect(()=>{
       houseNo,
       shareamount,
       image,
-    };
-    // const formData = new FormData();
-    // formData.append('firstname', firstname);
-    // formData.append('middlename', middlename);
-    // formData.append('phoneNo', phoneNo);
-    // formData.append('shareamount', shareamount);
-    // formData.append('paidbirr', paidbirr);
-    // formData.append('password', password);
-    // formData.append('subcity', subcity);
-    // formData.append('wereda', wereda);
-    // formData.append('city', city);
-    // formData.append('email', email);
-    // formData.append('country', country);
-    // formData.append('houseNo', houseNo);
-    // formData.append('lastname', lastname);
-    // if (image) {
-    //   formData.append('image', image,image.name);
-    // }
-  
+    };  
     const response = await fetch("http://localhost:8000/api/share", {
       method: "POST",
       headers: {

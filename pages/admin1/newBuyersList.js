@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../admin1'
 import NewBuyerTable from '@/components/Admin/NewBuyerTable';
 import { useRouter } from 'next/router';
-
 const newBuyersList = () => {
-
   const [share, setshare] = useState(null);
   const router=useRouter();
   useEffect(()=>{

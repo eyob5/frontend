@@ -14,8 +14,8 @@ import { useRouter } from "next/router";
 export default function TopBar({ showNav, setShowNav }) {
   const router = useRouter();
   const {logout}= UserAuth();
+  let user= JSON.parse(sessionStorage.getItem("user"));
   const handleLogout=async (e) =>{
-   const user= JSON.parse(sessionStorage.getItem("user"));
    if(user){
      logout();
      router.push('/login')
@@ -172,6 +172,7 @@ export default function TopBar({ showNav, setShowNav }) {
           </Transition>
         </Menu>
       </div> */}
+      <p >welcome {user.firstname}</p>
       <div className="  ">
         <button onClick={() => handleLogout()} className="-ml-16 w-24 h-10 border bg-sky-500 text-red-600 hover:bg-sky-700 rounded-2xl">
           Logout

@@ -30,7 +30,6 @@ export default function TransactionHistory() {
         if(response.ok){
           setUser(data)
           console.log(data)
-          // console.log(response)
         }
         else{
           setError(data)

@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '../shareholder';
 import { data } from 'autoprefixer';
 
-// import { getUserById } from '../utils/database';
 
-// Define the UserProfile component
 export default function UserProfile() {
   const [user, setUser] = useState(null);
   const router = useRouter();

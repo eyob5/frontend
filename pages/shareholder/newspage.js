@@ -71,7 +71,6 @@ const NewsCard = ({adminnews}) => {
     <>
     {adminnews && adminnews.map(item => (
        <div >
-       {/* <div className="mr-4 text-indigo-500">{icon}</div> */}
     <div className= 'w-full h-auto p-8 shadow-2xl shadow-black rounded-xl items-center '>
        <div className="font-bold text-blue-700">{item.title}</div>
        {item.author}
