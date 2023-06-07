@@ -33,19 +33,6 @@ const totalshare=rou.query.shareamount
       setError(data.message);
     }
   };
-
-  // Recalculate the total shares when the shareholders array changes
-  // useEffect(() => {
-  //   const newTotalShares = shareholders.reduce((acc, shareholder) => acc + shareholder.shares, 0);
-  //   setTotalShares(newTotalShares);
-  // }, [shareholders]);
-
-  // const handleSharesChange = (event, index) => {
-  //   const newShareholders = [...shareholders];
-  //   newShareholders[index].shares = parseInt(event.target.value);
-  //   setShareholders(newShareholders);
-  // };
-
   return (
     <Layout>
       <div className="h-screen justify-center">

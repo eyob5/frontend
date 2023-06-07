@@ -1,9 +1,11 @@
 import Head from "next/head";
+import {useRouter} from "next/router";
 import { useState } from "react";
 import Image from 'next/image';
 import Heator from "../components/Landing_page/Heator";
 
 const buy = () => {
+  const router = useRouter();
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -15,7 +17,6 @@ const buy = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [houseNo, setHouseNo] = useState("");
-  const [paidbirr, setPaidBirr] = useState("");
   const [shareamount, setShareAmount] = useState("");
   const [error, setError] = useState("");
   const [image, setImage] = useState(null);
@@ -26,7 +27,6 @@ const buy = () => {
     formData.append('middlename', middlename);
     formData.append('phoneNo', phoneNo);
     formData.append('shareamount', shareamount);
-    formData.append('paidbirr', paidbirr);
     formData.append('password', password);
     formData.append('subcity', subcity);
     formData.append('wereda', wereda);
@@ -62,6 +62,7 @@ const buy = () => {
   });
   const data = await response.json();
   if (response.ok) {
+    if(!data.error){
     setFirstName("");
     setMiddleName("");
     setLastName("");
@@ -72,12 +73,16 @@ const buy = () => {
     setPassword("");
     setPhoneNo("");
     setShareAmount("");
-    setPaidBirr("");
     setWereda("");
     setSubcity("");
     setError("");
     setImage(null);
     console.log(data);
+    router.push(data.message)
+    }
+    else{
+      setError(data.error);
+    }
   } else {
     setError(data.message);
   }
@@ -291,24 +296,6 @@ const handleImageChange = (event) => {
             />
           </div>
         </div>
-
-        <div className="mb-4 mt-4">
-          <label
-            htmlFor="paidBirr"
-            className="block mb-2 font-bold text-gray-700"
-          >
-            Paid Birr
-          </label>
-          <input
-            type="number"
-            id="paidBirr"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setPaidBirr(event.target.value)}
-            value={paidbirr}
-          />
-        </div>
-
         <div className="mb-4">
           <label
             htmlFor="shareAmount"
@@ -349,7 +336,7 @@ const handleImageChange = (event) => {
           >
             BUY
           </button>
-          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {error && <p className="text-red-500 mb-2">{error}</p>}
         </div>
       </form>
       

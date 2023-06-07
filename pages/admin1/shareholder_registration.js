@@ -15,8 +15,7 @@ export default function shareholder_registration() {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [houseNo, setHouseNo] = useState("");
-  // const [roll, setRoll] = useState('');
-  const [paidbirr, setPaidBirr] = useState("");
+  // const [paidbirr, setPaidBirr] = useState("");
   const [shareamount, setShareAmount] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
@@ -45,7 +44,6 @@ useEffect(()=>{
       setPassword(data.password),
       setSubcity(data.subcity),
       setHouseNo(data.houseNo),
-      setPaidBirr(data.paidbirr),
       setPhoneNo(data.phoneNo),
       setWereda(data.wereda),
       setEmail(data.email),
@@ -81,7 +79,6 @@ useEffect(()=>{
       phoneNo,
       password,
       houseNo,
-      paidbirr,
       shareamount,
       image,
     };
@@ -123,7 +120,6 @@ useEffect(()=>{
       setPassword("");
       setPhoneNo("");
       setShareAmount("");
-      setPaidBirr("");
       setWereda("");
       setSubcity("");
       setError("");
@@ -352,23 +348,7 @@ useEffect(()=>{
           </div>
         </div>
 
-        <div className="mb-4 mt-4">
-          <label
-            htmlFor="paidBirr"
-            className="block mb-2 font-bold text-gray-700"
-          >
-            Paid Birr
-          </label>
-          <input
-            type="number"
-            id="paidBirr"
-            required
-            placeholder={paidbirr}
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setPaidBirr(event.target.value)}
-            value={paidbirr}
-          />
-        </div>
+        
 
         <div className="mb-4">
           <label

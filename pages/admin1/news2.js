@@ -66,7 +66,8 @@ import { RiDeleteBin6Fill } from 'react-icons/ri'
 const AdminNewsCard = ({adminnews}) => {
   // const icon = type === 'alert' ? <FiAlertCircle /> : <IoMdInformationCircle />
   // console.log(news.title)
-//   console.log(adminnews)
+  // console.log(adminnews.reverse())
+  // console.log(adminnews)
   const handleDelete = async (id) => {
     const response = await fetch(`http://localhost:8000/api/adminnews/${id}`, {
       method: "DELETE",

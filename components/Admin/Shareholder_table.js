@@ -45,7 +45,7 @@ const ShareholderTable = ({ shareholders }) => {
   const filteredShareholders = shareholders.filter((shareholder) =>
     shareholder.firstname.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const totalShareAmount=shareholders.map((shareholder)=>(shareholder.shareamount)).reduce((previousValue, currentValue) => {
+  const totalShareAmount=shareholders && shareholders.map((shareholder)=>(shareholder.shareamount)).reduce((previousValue, currentValue) => {
     return previousValue+=currentValue;
   }, 0).toFixed(2)
 
@@ -143,9 +143,6 @@ const ShareholderTable = ({ shareholders }) => {
               <th className={`py-1 px-2 ${displayColumns < 4 ? "hidden" : ""}`}>
                 Email
               </th>
-              <th className={`py-1 px-2 ${displayColumns < 5 ? "hidden" : ""}`}>
-                PaidBirr
-              </th>
               <th
                 className={`py-1  px-2 ${displayColumns < 4 ? "hidden" : ""}`}
               >
@@ -184,14 +181,14 @@ const ShareholderTable = ({ shareholders }) => {
             </tr>
           </thead>
           <tbody>
-            {currentShareholders.map((shareholder) => (
+            {currentShareholders.map((shareholder,index) => (
               <tr key={shareholder._id}>
                 <td
                   className={`border py-1 px-2 ${
                     displayColumns < 8 ? "hidden" : ""
                   }`}
                 >
-                  {i++}
+                  {`${((index + 1)+((currentPage-1)*5))} `}
                 </td>
                 <td
                   className={`border py-1 px-2${
@@ -216,17 +213,10 @@ const ShareholderTable = ({ shareholders }) => {
                 </td>
                 <td
                   className={`border py-1 px-2 ${
-                    displayColumns < 5 ? "hidden" : ""
-                  }`}
-                >
-                  {shareholder.paidbirr}
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
                     displayColumns < 4 ? "hidden" : ""
                   }`}
                 >
-                  {shareholder.shareamount}
+                  {shareholder.shareamount.toFixed(2)}
                 </td>
                 {/* <td
                   className={`border py-1 px-2 ${

@@ -21,7 +21,6 @@ export default function ({ children }) {
       setIsMobile(false);
     }
   }
-
   useEffect(() => {
     if (typeof window != undefined) {
       addEventListener("resize", handleResize);

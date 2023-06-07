@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const BuyerTable = ({ shareholders }) => {
-let i=1;
   const handleDelete = async (id) => {
     console.log(id);
     const response = await fetch(`http://localhost:8000/api/addshareamount/${id}`, {
@@ -112,9 +111,6 @@ let i=1;
               <th className={`py-1 px-2 ${displayColumns < 4 ? "hidden" : ""}`}>
                 Email
               </th>
-              <th className={`py-1 px-2 ${displayColumns < 5 ? "hidden" : ""}`}>
-                PaidBirr
-              </th>
               <th
                 className={`py-1  px-2 ${displayColumns < 4 ? "hidden" : ""}`}
               >
@@ -153,14 +149,15 @@ let i=1;
             </tr>
           </thead>
           <tbody>
-            {currentShareholders.map((shareholder) => (
+            {currentShareholders.map((shareholder,index) => (
               <tr key={shareholder._id}>
                 <td
                   className={`border py-1 px-2 ${
                     displayColumns < 8 ? "hidden" : ""
                   }`}
                 >
-                  {i++}
+                 {`${((index + 1)+((currentPage-1)*5))} `}
+
                 </td>
                 <td
                   className={`border py-1 px-2${
@@ -182,13 +179,6 @@ let i=1;
                   }`}
                 >
                   {shareholder.email}
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 5 ? "hidden" : ""
-                  }`}
-                >
-                  {shareholder.paidbirr}
                 </td>
                 <td
                   className={`border py-1 px-2 ${

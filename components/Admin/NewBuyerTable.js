@@ -9,16 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const NewBuyerTable = ({ shareholders }) => {
 let i=1;
-  // const handleDelete = async (id) => {
-  //   console.log(id);
-  //   const response = await fetch(`http://localhost:8000/api/share/${id}`, {
-  //     method: "DELETE",
-  //   });
-  //   const data = await response.json();
-  //   if (response.ok) {
-  //     console.log(data);
-  //   }
-  // };
   const [searchTerm, setSearchTerm] = useState("");
   const [displayColumns, setDisplayColumns] = useState(25); // default to display all columns //5
   const [currentPage, setCurrentPage] = useState(1);
@@ -114,38 +104,11 @@ let i=1;
               <th className={`py-1 px-2 ${displayColumns < 4 ? "hidden" : ""}`}>
                 Email
               </th>
-              <th className={`py-1 px-2 ${displayColumns < 5 ? "hidden" : ""}`}>
-                PaidBirr
-              </th>
               <th
                 className={`py-1  px-2 ${displayColumns < 4 ? "hidden" : ""}`}
               >
                 shareamount
               </th>
-
-              {/* <th className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                Edit
-              </th>
-              <th className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                Delete
-              </th> */}
-              {/* <th> <button className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                    <Link className="flex text-center" href="/edit_shareholder">
-                      <FaEdit className="mt-1 mr-2 ml-1" /> Edit
-                    </Link>{" "}
-                  </button></th>
-                  <th><button className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                    <Link className="flex text-center" href="/delete_shareholder">
-                      <RiDeleteBin6Fill className="mt-1 mr-2 ml-1" /> Delete
-                    </Link>
-                  </button></th> */}
-              {/* <th
-                className={`py-1 px-2 text-center${
-                  displayColumns < 3 ? "hidden" : ""
-                }`}
-              >
-                Profit
-              </th> */}
               <th
                 className={`py-1 px-2 text-center${
                   displayColumns < 2 ? "hidden" : ""
@@ -156,14 +119,14 @@ let i=1;
             </tr>
           </thead>
           <tbody>
-            {currentShareholders.map((shareholder) => (
+            {currentShareholders.map((shareholder,index) => (
               <tr key={shareholder._id}>
                 <td
                   className={`border py-1 px-2 ${
                     displayColumns < 8 ? "hidden" : ""
                   }`}
                 >
-                  {i++}
+                  {`${((index + 1)+((currentPage-1)*5))} `}
                 </td>
                 <td
                   className={`border py-1 px-2${
@@ -188,32 +151,11 @@ let i=1;
                 </td>
                 <td
                   className={`border py-1 px-2 ${
-                    displayColumns < 5 ? "hidden" : ""
-                  }`}
-                >
-                  {shareholder.paidbirr}
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
                     displayColumns < 4 ? "hidden" : ""
                   }`}
                 >
                   {shareholder.shareamount}
                 </td>
-                {/* <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Edit
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Delete
-                </td> */}
                 <td
                   className={`py-1 px-2 text-center  flex${
                     displayColumns < 2 ? "hidden" : ""
@@ -228,25 +170,16 @@ let i=1;
                       Approve
                     </Link>{" "}
                   </button>
-
-                  {/* <form action="" method="post">
-                    <div>
-                      <button
-                        className="flex text-center ml-4 bg-red-700"
-                        type="submit"
-                        onClick={(e) => { */}
-                          {/* e.preventDefault(); */}
-                          {/* handleDelete(shareholder._id), handleButtonClick();
-                        }}
-                      > */}
-                        {/* <Link className="flex text-center ml-4 bg-red-700" href=""> */}
-                        {/* <RiDeleteBin6Fill className="mt-1 mr-2 ml-1" />
-                        <span> Delete </span> */}
-                        {/* </Link> */}
-                      {/* </button>
-                      <ToastContainer />
-                    </div>
-                  </form> */}
+                  
+                  <button>
+                    <Link
+                      className="flex text-center ml-2 bg-gray-600 text-white"
+                      href={`/admin1/TransactionHistory?email=${shareholder.email}`}
+                    >
+                      <FaEdit className="mt-1 mr-2 ml-1" />
+                      Transaction
+                    </Link>{" "}
+                  </button>
                 </td>
               </tr>
             ))}

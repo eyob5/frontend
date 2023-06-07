@@ -1,16 +1,27 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {useRouter} from "next/router";
 import Layout from '../shareholder'
 
 const buy = () => {
-
+  let user;
+  const router=useRouter();
   const [firstname, setFirstName] = useState("");
   const [middlename, setMiddleName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [paidbirr, setPaidBirr] = useState("");
+  const [phoneNo,setPhoneNo]=useState("");
   const [shareamount, setShareAmount] = useState("");
   const [error, setError] = useState("");
+  useEffect(() => {
+     user= JSON.parse(sessionStorage.getItem("user"));
+    console.log(user)
+    setEmail(user.email);
+    setFirstName(user.firstname);
+    setLastName(user.lastname);
+    setMiddleName(user.middlename);
+    setPhoneNo(user.phoneNo);
+  },[])
   const handleSubmit = async (event) => {
     event.preventDefault();
     // TODO: Handle form submission
@@ -19,7 +30,7 @@ const buy = () => {
       middlename,
       lastname,
       email,
-      paidbirr,
+      phoneNo,
       shareamount,
     };
     const response = await fetch("http://localhost:8000/api/addshareamount", {
@@ -29,16 +40,23 @@ const buy = () => {
       },
       body: JSON.stringify(addshareamount),
     });
+    console.log(response)
     const data = await response.json();
     if (response.ok) {
+      if(!data.error){
       setFirstName("");
       setMiddleName("");
       setLastName("");
       setEmail("");
+      setPhoneNo("");
       setShareAmount("");
-      setPaidBirr("");
       setError("");
       console.log(data);
+      router.push(data.message)}
+      else{
+        setError(data.error);
+      }
+     
     } else {
       setError(data.message);
     }
@@ -120,41 +138,10 @@ const buy = () => {
             autoComplete="email"
             required
             className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setEmail(event.target.value)}
+            // onChange={(event) => setEmail(event.target.value)}
             value={email}
           />
         </div>
-        {/* <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block mb-2 font-bold text-gray-700"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setPassword(event.target.value)}
-            // value={password}
-          />
-        </div> */}
-        {/* <div className="mt-4">
-          <label htmlFor="number" className="block mb-2 font-bold text-gray-700">
-           Roll No
-          </label>
-          <input
-            type="number"
-            id="roll"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            value={roll}
-            onChange={(event) => setRoll(event.target.value)}
-          />
-        </div> */}
-{/* 
         <div className="mb-4">
           <label
             htmlFor="phoneNo"
@@ -172,110 +159,6 @@ const buy = () => {
             value={phoneNo}
           />
         </div>
-        <div className="grid grid-cols-2 gap-x-4 mb-4">
-          <div>
-            <label
-              htmlFor="city"
-              className="block mb-2 font-bold text-gray-700"
-            >
-              City
-            </label>
-            <input
-              type="text"
-              id="city"
-              required
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              onChange={(event) => setCity(event.target.value)}
-              value={city}
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="state"
-              className="block mb-2 font-bold text-gray-700"
-            >
-              Subcity
-            </label>
-            <input
-              type="text"
-              id="subcity"
-              required
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              onChange={(event) => setSubcity(event.target.value)}
-              value={subcity}
-            />
-          </div>
-          <div className="mt-4">
-            <label
-              htmlFor="state"
-              className="block mb-2 font-bold text-gray-700"
-            >
-              Wereda
-            </label>
-            <input
-              type="text"
-              id="wereda"
-              required
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              onChange={(event) => setWereda(event.target.value)}
-              value={wereda}
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-x-4 mt-4">
-          <div>
-            <label
-              htmlFor="houseNo"
-              className="block mb-2 font-bold text-gray-700"
-            >
-              houseNo
-            </label>
-            <input
-              type="text"
-              id="houseNo"
-              required
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              onChange={(event) => setHouseNo(event.target.value)}
-              value={houseNo}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="country"
-              className="block mb-2 font-bold text-gray-700"
-            >
-              Country
-            </label>
-            <input
-              type="text"
-              id="country"
-              required
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              onChange={(event) => setCountry(event.target.value)}
-              value={country}
-            />
-          </div>
-        </div> */}
-
-        <div className="mb-4 mt-4">
-          <label
-            htmlFor="paidBirr"
-            className="block mb-2 font-bold text-gray-700"
-          >
-            Paid Birr
-          </label>
-          <input
-            type="number"
-            id="paidBirr"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setPaidBirr(event.target.value)}
-            value={paidbirr}
-          />
-        </div>
-
         <div className="mb-4">
           <label
             htmlFor="shareAmount"
@@ -292,20 +175,6 @@ const buy = () => {
             value={shareamount}
           />
         </div>
-        {/* <div className="mb-4">
-        <label htmlFor="description" className="block mb-2 font-bold text-gray-700">
-          Image:    <spam className="text-green-300 ml-10 ">insert the receipt</spam>
-        </label>
-        <form action="http://localhost:8000/api/adminnews" method="POST" enctype='multipart/form-data'>
-        <input
-          type="file"
-          id="image"
-          // onChange={(e) => setImage(e.target.value)}
-          // value={image}
-          className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
-       </form>
-      </div> */}
         <div className="mb-8">
           <button
             type="submit"
@@ -313,7 +182,7 @@ const buy = () => {
           >
             BUY
           </button>
-          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {error && <p className="text-red-500 mb-7">{error}</p>}
         </div>
       </form>
     </div>

@@ -5,15 +5,14 @@ import Layout from '../admin1'
 // import next from "next/types";
 function edit_shareholder() {
 const [email, setemail] = useState('');
-const [paidbirr, setPaidBirr] = useState('');
 const [shareamount, setShareAmount] = useState('');
 const [error, setError] = useState('');
+const [ispaid, setIsPaid] = useState('');
 const [person, setPerson] = useState(null);
 const rou =useRouter();
 const id=rou.query.id
-// console.log(rou.query.id)
 const handleUpdate = async (Email) => {
-    const update={paidbirr,shareamount}
+    const update={shareamount}
     const user= JSON.parse(sessionStorage.getItem("user"));
         const response=await fetch(`http://localhost:8000/api/share/${Email}`,{
         method: 'PUT',
@@ -27,13 +26,18 @@ const handleUpdate = async (Email) => {
     if (response.ok) {
       setemail('');
       setShareAmount('');
-      setPaidBirr('');
       setError('');
       console.log(data);
     } else {
       setError(data.message);
-      console.log("error")
     }  
+  //   const deleteresponse=await fetch(`http://localhost:8000/api/selltransaction/${Email}`,{
+  //     method: 'DELETE',
+  // });
+  //     const deleteddata = await deleteresponse.json();
+  //     if (response.ok) {
+  //       console.log(deleteddata);
+  //     }
 }
 useEffect(()=>{
     const fetchShareholders=async ()=>{
@@ -49,7 +53,6 @@ useEffect(()=>{
       if(response.ok){
         setPerson(data)
         setemail(data.email),
-        setPaidBirr(data.paidbirr),
         setShareAmount(data.shareamount)
         console.log(data)
       }
@@ -57,6 +60,15 @@ useEffect(()=>{
         // setError(data.message);
         console.log("error")
       }
+      // const response2=await fetch(`http://localhost:8000/api/selltransaction/${data.email}`);
+      // const data2=await response2.json()
+      // if(response2.ok){
+      //   console.log(data2)
+      //   setIsPaid(data2);
+      // }
+      // else{
+      //   console.log("error")
+      // }
     }
     else{
       rou.push('/login');
@@ -73,11 +85,11 @@ useEffect(()=>{
         <form action="" className="max-w-md mx-auto">
           <div className="mb-4">
             <label className=" block mb-2 font-bold text-gray-700" htmlFor="">
-              First Name 
+              Email 
             </label>
             <input
               className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              type="text"
+              type="email"
               
               placeholder={email}
               // onChange={(event) => setemail(event.target.value)}
@@ -96,21 +108,7 @@ useEffect(()=>{
               // onChange={(event) => setShareAmount(event.target.value)}
               value={shareamount}  
                   />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-bold text-gray-700" htmlFor="">
-              paidBirr
-            </label>
-            <input
-              className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              type="text"
-              required
-              placeholder={paidbirr}
-              // onChange={(event) => setPaidBirr(event.target.value)}
-              value={paidbirr}          
-                />
-          </div>
-          
+          </div> 
             <button
               type="submit"
               className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
@@ -123,6 +121,7 @@ useEffect(()=>{
           
         </form>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        {/* {ispaid && <p className="text-red-500 mb-4">{ispaid.email}</p>} */}
       </div>
     </div>
  }

@@ -1,37 +1,64 @@
-import React from 'react'
-import Layout from '../shareholder'
-import PropTypes from 'prop-types'
-import { FaFilePdf, FaFileExcel } from 'react-icons/fa'
+// pages/index.js
 
-const ReportCard = ({ title, description, type, file }) => {
-  const icon = type === 'sales' ? <FaFileExcel /> : <FaFilePdf />
+import React, { useEffect, useState } from "react";
+import ReportForm from "@/components/ReportForm";
+import ReportTable from "@/components/ReportTable";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+import Layout from '../shareholder'
+import { useRouter } from "next/router";
+
+const Report = () => {
+  const [share, setshare] = useState(null);
+  const [shareholderActivities, setShareholderActivities] = React.useState([]);
+  const router = useRouter();
+  let user;
+  useEffect(()=>{
+    const fetchShareholders=async ()=>{
+      user= JSON.parse(sessionStorage.getItem("user"));
+    if(user){
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+      const response=await fetch('http://localhost:8000/api/share',config)
+      const data=await response.json()
+      if(response.ok){
+        setshare(data)
+      }
+      else{
+        setError(data)
+      }
+    }
+    else{
+      console.log("not authoried")
+      router.push("/login");
+    }
+    }
+    fetchShareholders()
+  },[])
+
+  // const handleShareholderActivitiesUpdate = (activities) => {
+  //   setshare(activities);
+  // };
+
+  const handleDownloadReport = () => {
+    const doc = new jsPDF();
+    doc.autoTable({ html: "#shareholder-activities-table" });
+    doc.save("share-management-report.pdf");
+  };
 
   return (
     <Layout>
-    <div className="bg-white rounded-lg shadow-md p-4 mb-4 flex items-center">
-      <div className="mr-4 text-indigo-500">{icon}</div>
-      <div>
-        <div className="font-bold">{title}</div>
-        <div className="text-gray-500">{description}</div>
-        <div className="mt-4">
-          <a href={file} className="text-indigo-500 font-bold">
-            Download
-          </a>
-        </div>
-      </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Share Management Report Generator</h1>
+      {/* {share && <ReportForm onShareholderActivitiesUpdate={share} />} */}
+      <ReportTable shareholderActivities={share} />
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={handleDownloadReport}>Download Report</button>
     </div>
     </Layout>
-  )
-}
+  );
+};
 
-ReportCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['sales', 'financial']).isRequired,
-  file: PropTypes.string.isRequired,
-}
-
-export default ReportCard
-
-
-
+export default Report;

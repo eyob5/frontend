@@ -14,20 +14,18 @@ export default function UserProfile() {
   const [showLayout,setShowLayout]=useState(false)
   useEffect(() => {
     async function fetchUser() {
-      const user= JSON.parse(sessionStorage.getItem("user"));
-      if(user){
+      const users= JSON.parse(sessionStorage.getItem("user"));
+      if(users){
         const config = {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${users.token}`,
           },
         }
-      // if(user && user.roll===0){
         const response = await fetch('http://localhost:8000/api/user/info',config)
         const data = await response.json()
         if(response.ok){
           setUser(data)
           console.log(data)
-          // console.log(response)
         }
         else{
           setError(data)
@@ -86,11 +84,11 @@ export default function UserProfile() {
           <h2 className="text-lg font-medium mt-8 mb-4 text-red-400 ">Shareholder Information</h2>
             
             <p className="text-gray-600 mb-2">
-              <span className="font-semibold ">Shares Amount:<span className='pl-2 text-green-600'>{user.shareamount}</span></span> 
+              <span className="font-semibold ">Shares Amount:<span className='pl-2 text-green-600'>{user.shareamount.toFixed(2)}</span></span> 
             </p>
-            <p className="text-gray-600 mb-2">
+            {/* <p className="text-gray-600 mb-2">
               <span className=" font-semibold">Paid brr:<span className='pl-2 text-green-600'>{user.paidbirr}</span></span> 
-            </p>
+            </p> */}
           </div>
           </div>
           

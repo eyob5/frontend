@@ -79,9 +79,9 @@ function dashboared() {
                 </p>
               </div>
             </div> */}
-              <div className="flex items-center p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-               <Link href="http://localhost:3000/shareholder/report">
-            <div className="rounded-full bg-red-500 text-white p-2 mr-4">
+                 <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
+            <Link href="http://localhost:3000/shareholder/myshare">
+              <div className="rounded-full bg-teal-500 text-white p-2 mr-4 hover:scale-105 ease-in duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -99,9 +99,9 @@ function dashboared() {
               </div>
               </Link>
               <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-2">Meeting Reports</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-2">My Share Amount</h2>
                 <p className="text-gray-700">
-                  View reports from past shareholder meetings.
+                  View your current share amount and any changes that have been made.
                 </p>
               </div>
             </div>
@@ -131,9 +131,9 @@ function dashboared() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300 ease-in-out">
-            <Link href="http://localhost:3000/shareholder/news">
-              <div className="rounded-full bg-teal-500 text-white p-2 mr-4 hover:scale-105 ease-in duration-300">
+            <div className="flex items-center p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+               <Link href="http://localhost:3000/shareholder/report">
+            <div className="rounded-full bg-red-500 text-white p-2 mr-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -151,9 +151,9 @@ function dashboared() {
               </div>
               </Link>
               <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-2">My Share Amount</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-2"> Reports</h2>
                 <p className="text-gray-700">
-                  View your current share amount and any changes that have been made.
+                  View reports about the share.
                 </p>
               </div>
             </div>

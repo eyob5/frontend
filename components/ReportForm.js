@@ -2,6 +2,9 @@
 import React from "react";
 
 const ReportForm= ({ onShareholderActivitiesUpdate, shareholderActivities }) => {
+  if(onShareholderActivitiesUpdate)  {
+    onShareholderActivitiesUpdate.map((share)=>console.log(share.firstname))
+  }
   const [formData, setFormData] = React.useState({
     shareholderName: "",
     activityType: "",
@@ -22,7 +25,7 @@ const ReportForm= ({ onShareholderActivitiesUpdate, shareholderActivities }) => 
       activityType: formData.activityType,
       activityYear: formData.activityYear,
     };
-    onShareholderActivitiesUpdate(Array.isArray(shareholderActivities) ? [...shareholderActivities, newActivity] : [newActivity]);
+    // onShareholderActivitiesUpdate(Array.isArray(shareholderActivities) ? [...shareholderActivities, newActivity] : [newActivity]);
     setFormData({
       shareholderName: "",
       activityType: "",
@@ -34,7 +37,7 @@ const ReportForm= ({ onShareholderActivitiesUpdate, shareholderActivities }) => 
     <form className="mb-4" onSubmit={handleSubmit}>
       <div className="mb-2">
         <label className="mr-2 font-bold" htmlFor="shareholderName">Shareholder Name:</label>
-        <input className="border rounded px-4 py-2 w-64" type="text" id="shareholderName" name="shareholderName" value={formData.shareholderName} onChange={handleChange} />
+        <input className="border rounded px-4 py-2 w-64" type="text" id="shareholderName" name="shareholderName" value={onShareholderActivitiesUpdate[0].firstname} onChange={handleChange} />
       </div>
       <div className="mb-2">
         <label className="mr-2 font-bold" htmlFor="activityType">Activity Type:</label>
