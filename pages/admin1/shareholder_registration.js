@@ -15,7 +15,6 @@ export default function shareholder_registration() {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [houseNo, setHouseNo] = useState("");
-  // const [paidbirr, setPaidBirr] = useState("");
   const [shareamount, setShareAmount] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
@@ -92,6 +91,7 @@ useEffect(()=>{
     });
     const data = await response.json();
     if (response.ok) {
+      alert("added")
       setFirstName("");
       setMiddleName("");
       setLastName("");
@@ -203,23 +203,6 @@ useEffect(()=>{
             value={email}
           />
         </div>
-        {/* <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block mb-2 font-bold text-gray-700"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            required
-            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onChange={(event) => setPassword(event.target.value)}
-            value={password}
-          />
-        </div> */}
         <div className="mb-4">
           <label
             htmlFor="phoneNo"

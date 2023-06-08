@@ -25,6 +25,7 @@ const totalshare=rou.query.shareamount
     });
     const data = await response.json();
     if (response.ok) {
+      // alert("successfully ")
       setTotalProfit(0)
       setTotalShareAmount(0)
       setError("");
@@ -47,6 +48,7 @@ const totalshare=rou.query.shareamount
               className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 type="number"
                 value={totalProfit}
+                required
                 onChange={(event) => setTotalProfit(event.target.value)}
               />
             </div>

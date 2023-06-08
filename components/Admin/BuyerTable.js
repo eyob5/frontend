@@ -187,20 +187,6 @@ const BuyerTable = ({ shareholders }) => {
                 >
                   {shareholder.shareamount}
                 </td>
-                {/* <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Edit
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Delete
-                </td> */}
                 <td
                   className={`py-1 px-2 text-center  flex${
                     displayColumns < 2 ? "hidden" : ""

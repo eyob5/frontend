@@ -58,21 +58,22 @@ const AddNews = () => {
             type="text"
             id="title"
             name="title"
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             required
           />
         </div>
+        
         <div className="mb-4">
-          <label htmlFor="author" className="block font-medium mb-2">
+          <label htmlFor="author" className="block mb-2 font-bold text-gray-700">
             Author
           </label>
           <input
             type="text"
             id="author"
             name="author"
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             value={author}
             onChange={(event) => setauthor(event.target.value)}
             required
@@ -82,15 +83,14 @@ const AddNews = () => {
           <label htmlFor="description" className="block font-medium mb-2">
             Description
           </label>
-          <textarea
+          <input
             id="description"
             name="description"
-            rows="5"
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             required
-          ></textarea>
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="content" className="block font-medium mb-2">
@@ -99,7 +99,7 @@ const AddNews = () => {
           <textarea
             id="content"
             name="content"
-            rows="5"
+            rows="3"
             className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
             value={content}
             onChange={(event) => setcontent(event.target.value)}

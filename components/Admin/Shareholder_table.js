@@ -148,29 +148,6 @@ const ShareholderTable = ({ shareholders }) => {
               >
                 shareamount
               </th>
-              {/* <th className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                Edit
-              </th>
-              <th className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                Delete
-              </th> */}
-              {/* <th> <button className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                    <Link className="flex text-center" href="/edit_shareholder">
-                      <FaEdit className="mt-1 mr-2 ml-1" /> Edit
-                    </Link>{" "}
-                  </button></th>
-                  <th><button className={`py-1 px-2 ${displayColumns < 2 ? "hidden" : ""}`}>
-                    <Link className="flex text-center" href="/delete_shareholder">
-                      <RiDeleteBin6Fill className="mt-1 mr-2 ml-1" /> Delete
-                    </Link>
-                  </button></th> */}
-              {/* <th
-                className={`py-1 px-2 text-center${
-                  displayColumns < 3 ? "hidden" : ""
-                }`}
-              >
-                Profit
-              </th> */}
               <th
                 className={`py-1 px-2 text-center${
                   displayColumns < 2 ? "hidden" : ""
@@ -218,41 +195,20 @@ const ShareholderTable = ({ shareholders }) => {
                 >
                   {shareholder.shareamount.toFixed(2)}
                 </td>
-                {/* <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Edit
-                </td>
-                <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 2 ? "hidden" : ""
-                  }`}
-                >
-                  Delete
-                </td> */}
-                {/* <td
-                  className={`border py-1 px-2 ${
-                    displayColumns < 3 ? "hidden" : ""
-                  }`}
-                >
-                  {shareholder.paidbirr}
-                </td> */}
                 <td
                   className={`py-1 px-2 text-center  flex${
                     displayColumns < 2 ? "hidden" : ""
                   }`}
                 >
-                  {/* <button>
+                  <button>
                     <Link
                       className="flex text-center ml-2 bg-green-700"
-                      href={`/admin1/edit_shareholder?id=${shareholder._id}`}
+                      href={`/admin1/shareholder_details?id=${shareholder._id}`}
                     >
                       <FaEdit className="mt-1 mr-2 ml-1" />
-                      Edit
+                      Details
                     </Link>{" "}
-                  </button> */}
+                  </button>
 
                   <form action="" method="post">
                     <div>

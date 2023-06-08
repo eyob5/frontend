@@ -51,11 +51,11 @@ export default function Login() {
     <Heator>
       <div className="flex justify-center itmes-center bg-gray-300 h-screen  xl:justify-around gap-2  ">
         
-        <div className="mt-16 w-1/2 h-1/2 bg-white p-8">
+        <div className="mt-16 w-1/2 h-3/5 bg-white p-8">
           <div>
          
           <div>
-            <h2 className="items-center">Log in to your account</h2>
+            <h2 className=" flex justify-center font-bold items-center">Log in to your account</h2>
           </div>
          
             <form
@@ -122,7 +122,10 @@ export default function Login() {
                   log in
                 </button>
               </div>
+
             </form>
+            {error && <div className="text-red-600 flex justify-center">{error}</div>}
+
             {/* <div className="-mt-6 flex items-center md:justify-center -ml-6">
               <Link href={"/"}>
                 <p className=" py-5 md:pl-32 font-medium text-[20px] text-green-700 sm:pl-18">
@@ -130,7 +133,6 @@ export default function Login() {
                 </p>
               </Link>
             </div> */}
-            {error && <div className="text-red-500 ">{error}</div>}
           </div>
         </div>
       </div>
