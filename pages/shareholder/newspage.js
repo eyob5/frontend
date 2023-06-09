@@ -76,7 +76,12 @@ const NewsCard = ({adminnews}) => {
        {item.author}
        {item.description}
        {item.content}
-       <img src={`http://localhost:8000/${item.image}`}/>
+       <div className="bg-mint text-mint fill-current">
+       <img src={`http://localhost:8000/${item.image}`}
+       width="200"
+       height="200"
+       />
+       </div>
        <p className='italic text-normal text-right text-blue-950 pb-0 '>{formatDistanceToNow(new Date(item.createdAt),{addSuffix:true})}</p>
  </div>
      </div>
@@ -85,5 +90,4 @@ const NewsCard = ({adminnews}) => {
         </>
         )
         }
-
 export default NewsCard

@@ -3,17 +3,31 @@ import { useState } from "react";
 import Link from "next/link";
 
 const ContactPage = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = (event) => {
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Message:", message);
-    // TODO: Send form data to server
-  };
+    const contact={Name,Email,Message}
+    const response = await fetch("http://localhost:8000/api/contactus", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact)
+    });
+  const data = await response.json();
+  if (response.ok) {
+     setName("");
+     setEmail("");
+     setMessage("");
+     setError("");
+    console.log(data);
+  } else {
+    setError(data.message);
+  }
+}
 
   return (
     <div id='contact'>
@@ -69,7 +83,7 @@ const ContactPage = () => {
                       name="name"
                       className="input rounded-md border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 block w-full px-3 py-2 placeholder-gray-400 sm:text-sm"
                       placeholder="Name"
-                      value={name}
+                      value={Name}
                       onChange={(event) => setName(event.target.value)}
                       required
                     />
@@ -81,7 +95,7 @@ const ContactPage = () => {
                       name="email"
                       className="input rounded-md border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 block w-full px-3 py-2 placeholder-gray-400 sm:text-sm"
                       placeholder="Email"
-                      value={email}
+                      value={Email}
                       onChange={(event) => setEmail(event.target.value)}
                       required
                     />
@@ -92,7 +106,7 @@ const ContactPage = () => {
                       name="message"
                       className="input rounded-md border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 block w-full px-3 py-2 placeholder-gray-400 sm:text-sm"
                       placeholder="Message"
-                      value={message}
+                      value={Message}
                       onChange={(event) => setMessage(event.target.value)}
                       required
                     ></textarea>

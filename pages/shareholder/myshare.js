@@ -90,13 +90,18 @@ export default function UserProfile() {
           </div>
           </div>
           
-          <div className="bg-white border border-gray-200 rounded-lg p-4 shadow">
+          <div className="bg-mint text-mint fill-current">
             <h2 className="text-lg font-medium text-red-400 mb-4">Profile Picture</h2>
-            {/* <img src={`http://localhost:5000/${item.img}`}/><br></br> */}
+            {/* <div className="w-6/12 sm:w-4/12 px-4"> */}
             <img
-        src={`http://localhost:8000/${user.image}`}
-       alt="Profile" 
-             className="w-full rounded-lg" />
+           src={`http://localhost:8000/${user.image}`}
+           alt="Profile" 
+           width="300"
+           height="200"
+          //  className="shadow rounded-full max-w-full h-auto align-middle border-none"
+            />
+            {/* </div> */}
+
           </div>
         </div>
       </div>

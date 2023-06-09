@@ -38,10 +38,7 @@ export default function shareholder_details() {
   return (
     user &&
    <Layout>   
-    <div className="bg-gray-100 min-h-screen">
-      <Head>
-        <title>'s Profile</title>
-      </Head>
+    <div className="bg-gray-100 min-h-screen ">
       <div className="max-w-5xl mx-auto py-16 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white border border-gray-200 rounded-lg p-4 shadow">
@@ -78,18 +75,10 @@ export default function shareholder_details() {
              <p className="text-gray-600 mb-2">
               <span className="font-semibold">HouseNo:<span className='pl-2 text-green-600'>{user.houseNo}</span></span> 
             </p>
-          
-            </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4 mt-4 shadow">
-          <h2 className="text-lg font-medium mt-8 mb-4 text-red-400 ">Shareholder Information</h2>
-            
             <p className="text-gray-600 mb-2">
-              <span className="font-semibold ">Shares Amount:<span className='pl-2 text-green-600'>{user.shareamount.toFixed(2)}</span></span> 
+              <span className="font-semibold">ShareAmount:<span className='pl-2 text-green-600'>{user.shareamount.toFixed(2)}</span></span> 
             </p>
-            {/* <p className="text-gray-600 mb-2">
-              <span className=" font-semibold">Paid brr:<span className='pl-2 text-green-600'>{user.paidbirr}</span></span> 
-            </p> */}
-          </div>
+            </div>
           </div>
         </div>
       </div>
